@@ -13,9 +13,11 @@ namespace TakeABreak
 {
     public partial class fMain : Form
     {
+        public const int SECOND = 60;
+
         public int[] timerArr = new int[]
         {
-            1, 15, 20, 25, 30
+            1, 2, 15, 20, 25, 30
         };
 
         private int _End = 0;
@@ -25,7 +27,8 @@ namespace TakeABreak
         public fMain()
         {
             InitializeComponent();
-
+            timerMain.Interval = 30000;
+            //StartWithOS();
         }
 
         #region Events
@@ -34,17 +37,18 @@ namespace TakeABreak
             Minimize2Tray();
             LoadItem2_ToolStripMenu();
             timerMain.Tick += TimerMain_Tick;
+            LoadComboBox();
         }
 
         private void fMain_Shown(object sender, EventArgs e)
         {
-            LoadComboBox();
             Minimize2Tray();
         }
 
         private void fMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             Minimize2Tray();
+            e.Cancel = true;
         }
 
         private void TimerMain_Tick(object sender, EventArgs e)
@@ -52,18 +56,26 @@ namespace TakeABreak
             double _now = (DateTime.Now.Hour * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second);
             if (_now >= _End)
             {
-                timerMain.Stop();
-                MessageBox.Show("It is time to REST", "End timer", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //timerMain.Stop();
+                cbActive.Checked = timerMain.Enabled = false;
+                MessageBox.Show("It is time to REST", "TAKE A BREAK", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 RunSleepCommand();
-
-                if (second < 0)
-                { minutes--; second = 59; }
-                else second -= 10;
-
-                LabelText();
             }
-        }     
+            if (second <= 0)
+            { minutes--; second = SECOND; }
+            else second -= timerMain.Interval/1000; //second -= 10;
 
+            LabelText();
+        }
+        private void btnHide_Click(object sender, EventArgs e)
+        {
+            fMain_Shown(sender, e);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            quitToolStripMenuItem1_Click(sender, e);
+        }
         private void cbTimerSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cb = sender as ComboBox;
@@ -97,13 +109,17 @@ namespace TakeABreak
 
         private void quitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //this.Close();
+            System.Environment.Exit(1);
         }
 
         private void cmnsTrayItemSelect(object sender, EventArgs e)
         {
             ToolStripMenuItem tsmi = sender as ToolStripMenuItem;
-            TIMER = Convert.ToInt32(tsmi.Tag);
+            int selectedValue = Convert.ToInt32(tsmi.Tag);
+
+            cbTimerSelect.SelectedIndex =  Array.IndexOf(timerArr, selectedValue);
+            TIMER = selectedValue;
         }
         #endregion
 
@@ -134,25 +150,26 @@ namespace TakeABreak
 
         private void Handler(bool status)
         {
-            //timerMain.Enabled = status;
+            timerMain.Enabled = status;
             DateTime _now = DateTime.Now;
             if (status)
             {
-                timerMain.Start();
-                cmnsTray.Items[1].Text = "Deactive";
+                //timerMain.Start();
 
                 _End = (_now.Hour * 3600 + _now.Minute * 60 + _now.Second) + TIMER * 60;
+                lblTimer.Text = "Remaining: " + TIMER + "m";
                 minutes = TIMER--;
-                timerToolStripMenuItem.DropDownItems[1].Enabled = false;
+                timerToolStripMenuItem.Enabled = false;
             }
             else
             {
-                timerMain.Stop();
-                cmnsTray.Items[1].Text = "Active";
-                timerToolStripMenuItem.DropDownItems[1].Enabled = true;
-                second = 0;
+                //timerMain.Stop();
+                timerToolStripMenuItem.Enabled = true;
+                second = SECOND;
                 lblTimer.Text = "Remaining: ";
             }
+
+            cmnsTray.Items[1].Text = !status ? "Ative" : "Deactive";
         }
 
         private void Minimize2Tray()
@@ -196,10 +213,10 @@ namespace TakeABreak
 
         private void LabelText()
         {
-            string remain = "Remaining: ";
-            if (minutes <= 0)
-                lblTimer.Text = remain + second + " second";
-            else lblTimer.Text = remain + minutes + " minutes";
+            //string remain = "Remaining: " + minutes + "m ";
+            //lblTimer.Text = remain + (second < 10 ? string.Format("0{0}s", second) : string.Format("{0}s", second));
+
+            lblTimer.Text = "Remaining: " + minutes + "m  " + second + "s";
         }
         #endregion
     }

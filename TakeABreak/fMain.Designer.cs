@@ -43,9 +43,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblTimer = new System.Windows.Forms.Label();
             this.timerMain = new System.Windows.Forms.Timer(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnHide = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.cmnsTray.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // niTray
@@ -95,6 +99,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.lblTimer);
             this.panel1.Location = new System.Drawing.Point(12, 12);
@@ -107,9 +112,9 @@
             this.panel2.Controls.Add(this.cbActive);
             this.panel2.Controls.Add(this.cbTimerSelect);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(22, 117);
+            this.panel2.Location = new System.Drawing.Point(3, 116);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(356, 78);
+            this.panel2.Size = new System.Drawing.Size(312, 79);
             this.panel2.TabIndex = 5;
             // 
             // cbActive
@@ -117,7 +122,7 @@
             this.cbActive.AutoSize = true;
             this.cbActive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbActive.Location = new System.Drawing.Point(223, 27);
+            this.cbActive.Location = new System.Drawing.Point(193, 27);
             this.cbActive.Name = "cbActive";
             this.cbActive.Size = new System.Drawing.Size(109, 29);
             this.cbActive.TabIndex = 4;
@@ -148,16 +153,45 @@
             // 
             this.lblTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTimer.ForeColor = System.Drawing.Color.Red;
-            this.lblTimer.Location = new System.Drawing.Point(16, 22);
+            this.lblTimer.Location = new System.Drawing.Point(3, 21);
             this.lblTimer.Name = "lblTimer";
-            this.lblTimer.Size = new System.Drawing.Size(362, 78);
+            this.lblTimer.Size = new System.Drawing.Size(312, 78);
             this.lblTimer.TabIndex = 3;
             this.lblTimer.Text = "Remaining: ";
             this.lblTimer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // timerMain
             // 
-            this.timerMain.Interval = 10;
+            this.timerMain.Interval = 1;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.btnClose);
+            this.panel3.Controls.Add(this.btnHide);
+            this.panel3.Location = new System.Drawing.Point(321, 21);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(70, 174);
+            this.panel3.TabIndex = 6;
+            // 
+            // btnHide
+            // 
+            this.btnHide.Location = new System.Drawing.Point(3, 21);
+            this.btnHide.Name = "btnHide";
+            this.btnHide.Size = new System.Drawing.Size(64, 49);
+            this.btnHide.TabIndex = 0;
+            this.btnHide.Text = "Hide";
+            this.btnHide.UseVisualStyleBackColor = true;
+            this.btnHide.Click += new System.EventHandler(this.btnHide_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(3, 115);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(64, 49);
+            this.btnClose.TabIndex = 0;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // fMain
             // 
@@ -178,6 +212,7 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -197,6 +232,9 @@
         private System.Windows.Forms.Timer timerMain;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckBox cbActive;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnHide;
     }
 }
 
