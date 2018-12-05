@@ -9,7 +9,7 @@ namespace TakeABreak
         private static string AppName = "TakeABreak";
         public int[] timerArr = new int[]
         {
-            /*1, 2, */15, 20, 25, 30
+            1, 2, 15, 20, 25, 30
         };
 
         private int _End = 0;
@@ -24,7 +24,7 @@ namespace TakeABreak
             tsbActive.ToggleChanged += TsbActive_ToggleChanged;
             
             timerMain.Interval = 1000;
-            StartWithOS(false);
+            StartWithOS(true);
 
             // register the event that is fired after the key press
             hook.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook_KeyPressed);
@@ -68,9 +68,10 @@ namespace TakeABreak
             double _now = (DateTime.Now.Hour * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second);
             if (_now >= _End)
             {
-                tsbActive.Toggled = timerMain.Enabled = false;
-                MessageBox.Show("It is time to REST", "TAKE A BREAK", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tsbActive.Toggled = true;
+                timerMain.Enabled = false;
                 StopTimer();
+                MessageBox.Show("It is time to REST", "TAKE A BREAK", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 RunSleepCommand();
             }
             if (second <= 0)
@@ -89,10 +90,10 @@ namespace TakeABreak
             quitToolStripMenuItem1_Click(sender, e);
         }
         private void cbTimerSelect_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {  
             ComboBox cb = sender as ComboBox;
             TIMER = timerArr[cb.SelectedIndex];
-            lblTimer.Text = timerArr[cb.SelectedIndex] + ":00";
+            lblTimer.Text = timerArr[cb.SelectedIndex].ToString("00") + ":00";
         }
 
         //private void cbActive_CheckedChanged(object sender, EventArgs e)
