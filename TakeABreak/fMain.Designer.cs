@@ -37,19 +37,20 @@
             this.timerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.cbActive = new System.Windows.Forms.CheckBox();
+            this.tsbtnActive = new System.Windows.Forms.Integration.ElementHost();
+            this.tsbActive = new TakeABreak.ToggleSwitchButton();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnHide = new System.Windows.Forms.Button();
+            this.pnlComboBox = new System.Windows.Forms.Panel();
             this.cbTimerSelect = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTimer = new System.Windows.Forms.Label();
             this.timerMain = new System.Windows.Forms.Timer(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.btnHide = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.cmnsTray.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.pnlComboBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // niTray
@@ -99,41 +100,69 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.tsbtnActive);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.pnlComboBox);
             this.panel1.Controls.Add(this.lblTimer);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(394, 218);
+            this.panel1.Size = new System.Drawing.Size(384, 195);
             this.panel1.TabIndex = 0;
             // 
-            // panel2
+            // tsbtnActive
             // 
-            this.panel2.Controls.Add(this.cbActive);
-            this.panel2.Controls.Add(this.cbTimerSelect);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(3, 116);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(312, 79);
-            this.panel2.TabIndex = 5;
+            this.tsbtnActive.Location = new System.Drawing.Point(255, 21);
+            this.tsbtnActive.Name = "tsbtnActive";
+            this.tsbtnActive.Size = new System.Drawing.Size(115, 79);
+            this.tsbtnActive.TabIndex = 7;
+            this.tsbtnActive.Child = this.tsbActive;
             // 
-            // cbActive
+            // panel3
             // 
-            this.cbActive.AutoSize = true;
-            this.cbActive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbActive.Location = new System.Drawing.Point(193, 27);
-            this.cbActive.Name = "cbActive";
-            this.cbActive.Size = new System.Drawing.Size(109, 29);
-            this.cbActive.TabIndex = 4;
-            this.cbActive.Text = "ACTIVE";
-            this.cbActive.UseVisualStyleBackColor = true;
-            this.cbActive.CheckedChanged += new System.EventHandler(this.cbActive_CheckedChanged);
+            this.panel3.Controls.Add(this.btnClose);
+            this.panel3.Controls.Add(this.btnHide);
+            this.panel3.Location = new System.Drawing.Point(9, 125);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(363, 57);
+            this.panel3.TabIndex = 6;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(21, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(135, 49);
+            this.btnClose.TabIndex = 0;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnHide
+            // 
+            this.btnHide.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHide.Location = new System.Drawing.Point(219, 5);
+            this.btnHide.Name = "btnHide";
+            this.btnHide.Size = new System.Drawing.Size(141, 49);
+            this.btnHide.TabIndex = 0;
+            this.btnHide.Text = "Hide";
+            this.btnHide.UseVisualStyleBackColor = true;
+            this.btnHide.Click += new System.EventHandler(this.btnHide_Click);
+            // 
+            // pnlComboBox
+            // 
+            this.pnlComboBox.Controls.Add(this.cbTimerSelect);
+            this.pnlComboBox.Controls.Add(this.label1);
+            this.pnlComboBox.Location = new System.Drawing.Point(9, 21);
+            this.pnlComboBox.Name = "pnlComboBox";
+            this.pnlComboBox.Size = new System.Drawing.Size(240, 78);
+            this.pnlComboBox.TabIndex = 5;
             // 
             // cbTimerSelect
             // 
+            this.cbTimerSelect.CausesValidation = false;
+            this.cbTimerSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTimerSelect.FormattingEnabled = true;
-            this.cbTimerSelect.Location = new System.Drawing.Point(16, 35);
+            this.cbTimerSelect.Location = new System.Drawing.Point(21, 37);
             this.cbTimerSelect.Name = "cbTimerSelect";
             this.cbTimerSelect.Size = new System.Drawing.Size(171, 21);
             this.cbTimerSelect.TabIndex = 1;
@@ -143,62 +172,32 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 8);
+            this.label1.Location = new System.Drawing.Point(17, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 24);
+            this.label1.Size = new System.Drawing.Size(148, 24);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Timer";
+            this.label1.Text = "Remind me after";
             // 
             // lblTimer
             // 
-            this.lblTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTimer.ForeColor = System.Drawing.Color.Red;
-            this.lblTimer.Location = new System.Drawing.Point(3, 21);
+            this.lblTimer.Location = new System.Drawing.Point(5, 21);
             this.lblTimer.Name = "lblTimer";
-            this.lblTimer.Size = new System.Drawing.Size(312, 78);
+            this.lblTimer.Size = new System.Drawing.Size(255, 78);
             this.lblTimer.TabIndex = 3;
-            this.lblTimer.Text = "Remaining: ";
-            this.lblTimer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timerMain
             // 
             this.timerMain.Interval = 1;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.btnClose);
-            this.panel3.Controls.Add(this.btnHide);
-            this.panel3.Location = new System.Drawing.Point(321, 21);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(70, 174);
-            this.panel3.TabIndex = 6;
-            // 
-            // btnHide
-            // 
-            this.btnHide.Location = new System.Drawing.Point(3, 21);
-            this.btnHide.Name = "btnHide";
-            this.btnHide.Size = new System.Drawing.Size(64, 49);
-            this.btnHide.TabIndex = 0;
-            this.btnHide.Text = "Hide";
-            this.btnHide.UseVisualStyleBackColor = true;
-            this.btnHide.Click += new System.EventHandler(this.btnHide_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(3, 115);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(64, 49);
-            this.btnClose.TabIndex = 0;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(418, 242);
+            this.ClientSize = new System.Drawing.Size(406, 218);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -207,12 +206,11 @@
             this.Text = "Take a break";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fMain_FormClosing);
             this.Load += new System.EventHandler(this.fMain_Load);
-            this.Shown += new System.EventHandler(this.fMain_Shown);
             this.cmnsTray.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.pnlComboBox.ResumeLayout(false);
+            this.pnlComboBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -230,11 +228,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem1;
         private System.Windows.Forms.Timer timerMain;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.CheckBox cbActive;
+        private System.Windows.Forms.Panel pnlComboBox;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnHide;
+        private System.Windows.Forms.Integration.ElementHost tsbtnActive;
+        private ToggleSwitchButton tsbActive;
     }
 }
 
