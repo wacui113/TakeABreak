@@ -13,7 +13,8 @@ namespace TakeABreak
 
         FontFamily ff;
         Font font;
-
+        
+        // Load Font style to Application
         private void loadFont()
         {
             byte[] fontArray = TakeABreak.Properties.Resources.digital_7__mono_italic_;
@@ -36,7 +37,8 @@ namespace TakeABreak
             ff = pfc.Families[0];
             font = new Font(ff, 15f, FontStyle.Italic);
         }
-
+        
+        // Setup Font style
         private void AllocFont(Font f, Control c, float size)
         {
             FontStyle fontStyle = FontStyle.Italic;
@@ -73,9 +75,7 @@ namespace TakeABreak
             hook.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook_KeyPressed);
 
             // register the Control + Alt + K combination as hot key
-            hook.RegisterHotKey(TakeABreak.ModifierKeys.Control | TakeABreak.ModifierKeys.Alt, Keys.K);
-
-            
+            hook.RegisterHotKey(TakeABreak.ModifierKeys.Control | TakeABreak.ModifierKeys.Alt, Keys.K);        
         }
 
 
