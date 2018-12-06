@@ -52,10 +52,9 @@ namespace TakeABreak
 
         private void f_Toggled()
         {
-            if (!toggled)
+            if (toggled)
             {
                 rectBack.Fill = backgrOn;
-                toggled = true;
                 ellDot.Margin = positionOn;
 
                 ellDot.Stroke = thicknessOnBrush;
@@ -64,7 +63,6 @@ namespace TakeABreak
             else
             {
                 rectBack.Fill = backgrOff;
-                toggled = false;
                 ellDot.Margin = positionOff;
 
                 ellDot.Stroke = thicknessOffBrush;
@@ -75,14 +73,16 @@ namespace TakeABreak
 
         private void rectBack_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            f_Toggled();
+            //f_Toggled();
             //ToggleChanged?.Invoke(this, EventArgs.Empty);
+            Toggled = !Toggled;
         }
 
         private void ellDot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            f_Toggled();
+            //f_Toggled();
             //ToggleChanged?.Invoke(this, EventArgs.Empty);
+            Toggled = !Toggled;
         }
     }
 }

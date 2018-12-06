@@ -37,8 +37,6 @@
             this.timerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tsbtnActive = new System.Windows.Forms.Integration.ElementHost();
-            this.tsbActive = new TakeABreak.ToggleSwitchButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnHide = new System.Windows.Forms.Button();
@@ -47,6 +45,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblTimer = new System.Windows.Forms.Label();
             this.timerMain = new System.Windows.Forms.Timer(this.components);
+            this.tsbtnActive = new System.Windows.Forms.Integration.ElementHost();
+            this.tsbActive = new TakeABreak.ToggleSwitchButton();
             this.cmnsTray.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -109,14 +109,6 @@
             this.panel1.Size = new System.Drawing.Size(384, 195);
             this.panel1.TabIndex = 0;
             // 
-            // tsbtnActive
-            // 
-            this.tsbtnActive.Location = new System.Drawing.Point(255, 21);
-            this.tsbtnActive.Name = "tsbtnActive";
-            this.tsbtnActive.Size = new System.Drawing.Size(115, 79);
-            this.tsbtnActive.TabIndex = 7;
-            this.tsbtnActive.Child = this.tsbActive;
-            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.btnClose);
@@ -152,7 +144,7 @@
             // 
             this.pnlComboBox.Controls.Add(this.cbTimerSelect);
             this.pnlComboBox.Controls.Add(this.label1);
-            this.pnlComboBox.Location = new System.Drawing.Point(9, 21);
+            this.pnlComboBox.Location = new System.Drawing.Point(9, 22);
             this.pnlComboBox.Name = "pnlComboBox";
             this.pnlComboBox.Size = new System.Drawing.Size(240, 78);
             this.pnlComboBox.TabIndex = 5;
@@ -161,11 +153,12 @@
             // 
             this.cbTimerSelect.CausesValidation = false;
             this.cbTimerSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTimerSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTimerSelect.FormattingEnabled = true;
             this.cbTimerSelect.Location = new System.Drawing.Point(21, 37);
             this.cbTimerSelect.Name = "cbTimerSelect";
-            this.cbTimerSelect.Size = new System.Drawing.Size(171, 21);
-            this.cbTimerSelect.TabIndex = 1;
+            this.cbTimerSelect.Size = new System.Drawing.Size(195, 28);
+            this.cbTimerSelect.TabIndex = 0;
             this.cbTimerSelect.SelectedIndexChanged += new System.EventHandler(this.cbTimerSelect_SelectedIndexChanged);
             // 
             // label1
@@ -180,7 +173,7 @@
             // 
             // lblTimer
             // 
-            this.lblTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimer.Font = new System.Drawing.Font("VNI-Book", 50.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTimer.ForeColor = System.Drawing.Color.Red;
             this.lblTimer.Location = new System.Drawing.Point(5, 21);
             this.lblTimer.Name = "lblTimer";
@@ -191,6 +184,14 @@
             // timerMain
             // 
             this.timerMain.Interval = 1;
+            // 
+            // tsbtnActive
+            // 
+            this.tsbtnActive.Location = new System.Drawing.Point(255, 21);
+            this.tsbtnActive.Name = "tsbtnActive";
+            this.tsbtnActive.Size = new System.Drawing.Size(115, 79);
+            this.tsbtnActive.TabIndex = 7;
+            this.tsbtnActive.Child = this.tsbActive;
             // 
             // fMain
             // 
