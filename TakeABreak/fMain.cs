@@ -48,10 +48,10 @@ namespace TakeABreak
         private static string AppName = "TakeABreak";
         private byte[] timerArr = new byte[]
         {
-            /*1, 2,*/ 15, 20, 25, 30
+            /*1,*/ 15, 20, 25, 30
         };
 
-        private System.Drawing.Image img = System.Drawing.Image.FromFile("tick.png");
+        private System.Drawing.Image img = System.Drawing.Image.FromFile(Application.StartupPath + "\\tick.png");
         
         private int selected = 0;
         private byte minutes = 0;
@@ -67,15 +67,13 @@ namespace TakeABreak
             timerMain.Tick += TimerMain_Tick;
 
             timerMain.Interval = 1000;
-            StartWithOS(false);
+            StartWithOS(true);
 
             // register the event that is fired after the key press
             hook.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook_KeyPressed);
 
             // register the Control + Alt + K combination as hot key
-            hook.RegisterHotKey(TakeABreak.ModifierKeys.Control | TakeABreak.ModifierKeys.Alt, Keys.K);
-
-            
+            hook.RegisterHotKey(TakeABreak.ModifierKeys.Control | TakeABreak.ModifierKeys.Alt, Keys.K);          
         }
 
 
@@ -90,6 +88,7 @@ namespace TakeABreak
             AllocFont(font, this.lblTimer, 68);
 
             Minimize2Tray();
+            this.ShowInTaskbar = false;
         }
 
         private void fMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -111,15 +110,16 @@ namespace TakeABreak
 
         private void TimerMain_Tick(object sender, EventArgs e)
         {
-            if(minutes < 0)
-            { 
-                if(second <= 0)
+            if (minutes < 1)
+            {
+                if (second <= 0)
                 {
                     tsbActive.Toggled = timerMain.Enabled = false;
                     StopTimer();
                     MessageBox.Show("It is time to REST", "TAKE A BREAK", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     RunSleepCommand();
                 }
+                else if (second == 11) openWindowsToolStripMenuItem_Click(sender, e);
             }
             if (second <= 0)
             { second = SECOND; minutes--; }
